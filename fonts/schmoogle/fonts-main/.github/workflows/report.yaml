@@ -1,0 +1,50 @@
+# Generate report for google/fonts repo
+name: Google Fonts Report
+
+on:
+  # will run when modifying this file for testing purposes
+  pull_request:
+    paths:
+      - '.github/workflows/report.yaml'
+  schedule:
+    # Every day at 12am
+    - cron:  '0 0 * * *'
+  
+
+
+jobs:
+  gen_report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: Install Cairo (Ubuntu)
+      run: sudo apt-get install libcairo2-dev
+    - name: Install dependencies
+      run: pip install gftools[qa]
+    - name: Generate report
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        DEV_META_URL: ${{ secrets.DEV_META_URL }}
+        SANDBOX_META_URL: ${{ secrets.SANDBOX_META_URL }}
+        PRODUCTION_META_URL: ${{ secrets.PRODUCTION_META_URL }}
+      run: |
+        mkdir out
+        gftools push-stats . out/index.html
+        gftools compare-meta --meta -o out/meta.html
+        cp .ci/tags.html out/tags.html
+        cp .ci/vf-tag-demo2.html out/vf-tag-demo2.html
+        curl https://fonts.google.com/metadata/fonts > out/family_data.json
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/main' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
