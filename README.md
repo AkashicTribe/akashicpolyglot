@@ -1,3 +1,5 @@
+![Omnicheck](https://github.com/AkashicTribe/akashicpolyglot/actions/workflows/omnicheck.yml/badge.svg)
+
 # akashicpolyglot
 
 A macOS-first, foxlike pipeline that lets you 📸 grab any on-screen text, 🔍 OCR & deep-scrub it, and 🚀 export both UTF-8 & UTF-16-LE CSVs—automatically ✅ meeting our Minimum Acceptable Standard (MAS) in every run.
