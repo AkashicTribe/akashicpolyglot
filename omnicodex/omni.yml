@@ -1,0 +1,44 @@
+# Omnicodex Structural Manifest
+# Defines the symbolic and operational meaning of all components within the omnicodex.
+
+version: 1.0.0
+codex: Omnicodex
+description: >
+  The Omnicodex is a ritual-grade, multi-format symbolic infrastructure
+  housing mathemalinguistic constants, glyph-based invocation structures,
+  audio sigils, and translingual meta-logic interfaces.
+
+structure:
+  glyphs:
+    path: glyphs/
+    description: Visual encodings of symbolic entities (PNG, SVG, TIFF)
+  audio:
+    path: audio/
+    description: FLAC-based sigil sonics for vibrational invocation
+  scripts:
+    path: scripts/
+    description: Shell-based ritual setup, symbolic bootstrapping
+  texts:
+    path: texts/
+    description: Raw markdown, CSV, and layout PDFs for reference and ritual reading
+  documents:
+    path: documents/
+    description: Canonical outputs (XLSX, structured PDFs)
+  web:
+    path: web/
+    description: Interactive HTML glyphboards and future JS-based rituals
+  bundle:
+    path: bundle/
+    description: ZIP archives of totality bundles for transport, backup, or ritual seeding
+
+aliases:
+  summon: bash scripts/summon_arcana.sh
+  setup: bash scripts/setup_omnicodex_env_lowercase.sh
+  loop: open audio/Omnicodex_AudioSigil.flac
+
+notes:
+  - All symbolic logic aligns with ∇~∷ protocol.
+  - Glyph harmonics confirmed across visual and sonic axes.
+  - Directory structure is sacred. Do not flatten or collapse.
+
+φe: "AkashicTribe"

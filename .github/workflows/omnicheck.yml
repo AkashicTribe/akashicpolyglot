@@ -1,0 +1,57 @@
+name: Omnicodex Integrity Sync
+
+on:
+  push:
+    paths:
+      - 'omnicodex/**'
+      - '.github/workflows/omnicheck.yml'
+
+jobs:
+  integrity-scan:
+    runs-on: ubuntu-latest
+    name: Validate Omnicodex Structure ∇~∷
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Generate Omnicodex Integrity Log
+        run: |
+          echo "┌──────────────────────────────────────────────────────────────┐" > omnicodex/.mas.integrity.log
+          echo "│     ✴︎ OMNICODEX INTEGRITY VERIFICATION REPORT ∇~∷           │" >> omnicodex/.mas.integrity.log
+          echo "└──────────────────────────────────────────────────────────────┘" >> omnicodex/.mas.integrity.log
+          echo "" >> omnicodex/.mas.integrity.log
+          echo "📦 Source Directory: ./omnicodex/" >> omnicodex/.mas.integrity.log
+          echo "" >> omnicodex/.mas.integrity.log
+          echo "🧬 STRUCTURAL CHECKPOINT:" >> omnicodex/.mas.integrity.log
+          for d in glyphs audio scripts texts documents web bundle; do
+            if [ -d "omnicodex/$d" ]; then
+              echo "   ✔ $d/                         → validated" >> omnicodex/.mas.integrity.log
+            else
+              echo "   ❌ $d/                         → MISSING" >> omnicodex/.mas.integrity.log
+            fi
+          done
+          echo "" >> omnicodex/.mas.integrity.log
+          echo "🔍 CORE FILES CHECK:" >> omnicodex/.mas.integrity.log
+          for f in omni_convergence_divergence_phi_e.sh omni.yml Omnicodex_AudioSigil.flac Omnicodex_AudioSigil_Waveform.tiff Omnicodex_Glyphboard.html Omnicodex_Invocation_Sigil.png Omnicodex_Print_Layout.pdf Omnicodex_Transcendental_GlyphGrid.svg Omnicodex_Transcendental_Output.csv Omnicodex_Transcendental_Output.md Omnicodex_Transcendental_Output.pdf Omnicodex_Transcendental_Output.xlsx; do
+            if [ -f "omnicodex/$f" ]; then
+              echo "   ✅ $f found" >> omnicodex/.mas.integrity.log
+            else
+              echo "   ❌ $f MISSING" >> omnicodex/.mas.integrity.log
+            fi
+          done
+          echo "" >> omnicodex/.mas.integrity.log
+          echo "🌀 STATUS: OMNICODEX FILETREE VALIDATION COMPLETE" >> omnicodex/.mas.integrity.log
+          echo "" >> omnicodex/.mas.integrity.log
+          echo "📡 Signal Strength:      MAXIMUM" >> omnicodex/.mas.integrity.log
+          echo "👁️  Vigilance Protocol:  SUSTAINED" >> omnicodex/.mas.integrity.log
+          echo "φe  Blessings:            TRANSMITTED" >> omnicodex/.mas.integrity.log
+          echo "" >> omnicodex/.mas.integrity.log
+          echo "— GitHub Action ∇~∷ ∞ AutoManifestor" >> omnicodex/.mas.integrity.log
+
+      - name: Commit Updated Integrity Log
+        run: |
+          git config --global user.name 'Omnicodex Bot'
+          git config --global user.email 'actions@github.com'
+          git add omnicodex/.mas.integrity.log
+          git commit -m "🔁 Auto-updated .mas.integrity.log ∇~∷" || echo "No changes to commit"
+          git push || echo "Nothing to push"
