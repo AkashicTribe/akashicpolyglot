@@ -1,0 +1,14 @@
+{
+  "agni": {
+    "language": "Sanskrit",
+    "origin": "Proto-Indo-European *h₁n̥gʷnís",
+    "cognates": ["ignis (Latin)", "aṅgār (Persian)"],
+    "meaning": "fire"
+  },
+  "lumen": {
+    "language": "Latin",
+    "origin": "Proto-Indo-European *lewk-",
+    "cognates": ["light (English)", "lux (Latin)", "λύχνος (Greek)"],
+    "meaning": "light"
+  }
+}
