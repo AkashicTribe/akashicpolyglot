@@ -1,0 +1,15 @@
+# Enforce consistent case sensitivity handling and EOL behavior
+* text=auto eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.csv text eol=lf
+*.svg text eol=lf
+*.html text eol=lf
+*.pdf binary
+*.png binary
+*.tiff binary
+*.flac binary
+*.xlsx binary
+.omni.yml text
+.mas.integrity.log text
